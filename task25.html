@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 25</title>
+    <style>
+        .con {
+            height: 400px;
+            width: 1500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #start {
+            margin-left: 10px;
+        }
+
+        #stop {
+            margin-left: 20px;
+        }
+
+        #imgg {
+            height: 190px;
+            margin-top: 190px;
+            position: absolute;
+        }
+        #start{
+            background-color: rgb(83, 180, 209);
+            padding: 15px;
+
+        }
+        #stop{
+            background-color: rgb(240, 15, 15);
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <img src="https://th.bing.com/th/id/R.5c7aee5d42f4353d387bfa59e5aaab16?rik=gpOqRU4fmFSoOw&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fschool-bus-transparent%2fschool-bus-transparent-12.png&ehk=ENIJHWD7HV1JZ5ZvqsqCp8LWgeW0D9ZEjYExhD%2f5UeE%3d&risl=&pid=ImgRaw&r=0" id="imgg">
+    </div>
+    <button id="start" onclick="startt()">Start</button>
+    <button id="stop" onclick="stopp()">Stop</button>
+    <script>
+        var train = document.getElementById("imgg");
+        var startbtn = document.getElementById('start');
+        var stopbtn = document.getElementById('stop');
+        let animationId;
+
+        function startt() {
+            let position = 0;
+            const speed = 2;
+
+            function move() {
+                position += speed;
+                train.style.left = position + 'px';
+
+                if (position < 1500 ) {
+                    animationId = requestAnimationFrame(move);
+                }
+            }
+
+            animationId = requestAnimationFrame(move);
+        }
+
+        function stopp() {
+            cancelAnimationFrame(animationId);
+        }
+
+        startbtn.addEventListener('click', startt);
+        stopbtn.addEventListener('click', stopp);
+    </script>
+</body>
+</html>
